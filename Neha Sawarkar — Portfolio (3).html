@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neha Sawarkar — Cosmetic Scientist & Beauty Tech Consultant</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #1C2B1E;
+  --offwhite: #F7F3EE;
+  --gold: #C9A84C;
+  --sage: #8FA882;
+  --sage-light: #D6E5D0;
+  --ink: #2A2A2A;
+  --mist: #E8E4DF;
+  --gold-pale: #F0E8D0;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+*, *::before, *::after { box-sizing: inherit; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--offwhite);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0;
+  z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 3rem;
+  background: rgba(247,243,238,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--mist);
+}
+.nav-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--forest);
+}
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: var(--forest);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 8rem 3rem 4rem;
+  gap: 4rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.hero.visible { opacity: 1; transform: translateY(0); }
+
+.hero-left {}
+.hero-label {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--sage);
+  letter-spacing: 0.12em;
+  margin-bottom: 1.5rem;
+}
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--offwhite);
+  margin-bottom: 1.5rem;
+}
+.hero-name em {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero-desc {
+  font-size: 1rem;
+  color: rgba(247,243,238,0.7);
+  max-width: 38ch;
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
+}
+.hero-cta {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  transition: background 0.2s, color 0.2s;
+}
+.hero-cta:hover { background: var(--gold); color: var(--forest); }
+
+/* Formula card in hero */
+.hero-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.25);
+  padding: 2rem;
+  font-family: 'DM Sans', sans-serif;
+}
+.formula-header {
+  font-size: 0.65rem;
+  color: var(--sage);
+  letter-spacing: 0.14em;
+  border-bottom: 1px solid rgba(143,168,130,0.2);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.formula-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.75rem;
+}
+.formula-row:last-child { border-bottom: none; }
+.inci { color: var(--offwhite); font-weight: 400; }
+.conc { color: var(--gold); font-weight: 500; text-align: center; }
+.func { color: rgba(247,243,238,0.45); font-style: italic; }
+.formula-footer {
+  margin-top: 1.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(143,168,130,0.2);
+  font-size: 0.65rem;
+  color: var(--sage);
+  letter-spacing: 0.08em;
+}
+
+/* SECTIONS */
+section { padding: 6rem 3rem; }
+
+.section-label {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--sage);
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--forest);
+  margin-bottom: 3rem;
+}
+
+/* EXPERTISE */
+.expertise { background: var(--offwhite); }
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  background: var(--mist);
+  border: 1px solid var(--mist);
+}
+.expertise-cell {
+  background: var(--offwhite);
+  padding: 2rem 1.75rem;
+}
+.expertise-cell h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--forest);
+  margin-bottom: 0.75rem;
+}
+.expertise-cell p {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: #555;
+}
+.expertise-cell .tags {
+  margin-top: 1rem;
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+}
+.tag {
+  font-size: 0.65rem;
+  padding: 0.25rem 0.6rem;
+  background: var(--sage-light);
+  color: var(--forest);
+  letter-spacing: 0.04em;
+}
+
+/* WORK / PROJECTS */
+.work { background: var(--forest); color: var(--offwhite); }
+.work .section-title { color: var(--offwhite); }
+
+.project-list { display: flex; flex-direction: column; gap: 1.5px; background: rgba(255,255,255,0.06); }
+
+.project-item {
+  background: var(--forest);
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 3rem;
+  padding: 2.5rem;
+  border-left: 2px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
+  cursor: default;
+}
+.project-item:hover {
+  border-left-color: var(--gold);
+  background: rgba(201,168,76,0.05);
+}
+.project-meta { font-size: 0.68rem; color: var(--sage); letter-spacing: 0.1em; margin-bottom: 0.6rem; }
+.project-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 400;
+  color: var(--offwhite);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+.project-desc { font-size: 0.82rem; color: rgba(247,243,238,0.65); line-height: 1.75; }
+
+.project-data {}
+.data-block { margin-bottom: 1.25rem; }
+.data-label { font-size: 0.62rem; color: var(--sage); letter-spacing: 0.12em; margin-bottom: 0.4rem; }
+.data-value { font-size: 0.8rem; color: rgba(247,243,238,0.85); line-height: 1.6; }
+.data-pill {
+  display: inline-block;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid rgba(201,168,76,0.4);
+  color: var(--gold);
+  margin: 0.15rem 0.15rem 0 0;
+}
+
+/* EXPERIENCE TIMELINE */
+.experience { background: var(--offwhite); }
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before {
+  content: '';
+  position: absolute; left: 0; top: 0.5rem; bottom: 0;
+  width: 1px; background: var(--mist);
+}
+.timeline-item {
+  position: relative;
+  padding-bottom: 3rem;
+  padding-left: 2rem;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute; left: -2rem; top: 0.45rem;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.timeline-period { font-size: 0.68rem; color: var(--sage); letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+.timeline-role {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--forest);
+}
+.timeline-company { font-size: 0.82rem; color: #777; margin-bottom: 0.75rem; }
+.timeline-bullets { list-style: none; }
+.timeline-bullets li {
+  font-size: 0.82rem;
+  color: #444;
+  line-height: 1.7;
+  padding-left: 1rem;
+  position: relative;
+  margin-bottom: 0.3rem;
+}
+.timeline-bullets li::before {
+  content: '—';
+  position: absolute; left: 0;
+  color: var(--gold);
+  font-size: 0.7rem;
+}
+
+/* SKILLS */
+.skills-section { background: var(--sage-light); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.skill-group h4 {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--forest);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(28,43,30,0.15);
+}
+.skill-group ul { list-style: none; }
+.skill-group ul li {
+  font-size: 0.78rem;
+  color: #3a4a3b;
+  padding: 0.2rem 0;
+  line-height: 1.5;
+}
+
+/* CONTACT */
+.contact-section {
+  background: var(--forest);
+  text-align: center;
+  padding: 5rem 3rem;
+}
+.contact-section .section-title { color: var(--offwhite); margin-bottom: 1rem; }
+.contact-sub { color: rgba(247,243,238,0.6); font-size: 0.9rem; margin-bottom: 2.5rem; }
+.contact-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+.contact-link {
+  font-size: 0.8rem;
+  color: var(--gold);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(201,168,76,0.3);
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+.contact-link:hover { border-color: var(--gold); }
+
+footer {
+  background: var(--forest);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 1.5rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+footer p { font-size: 0.7rem; color: rgba(247,243,238,0.3); }
+
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.2rem; }
+  .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 2.5rem; }
+  section { padding: 4rem 1.5rem; }
+  .expertise-grid { grid-template-columns: 1fr; }
+  .project-item { grid-template-columns: 1fr; gap: 1.5rem; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Neha Sawarkar</span>
+  <div class="nav-links">
+    <a href="#work">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <p class="hero-label">Cosmetic Scientist · Beauty Tech Consultant</p>
+    <h1 class="hero-name">Neha<br><em>Sawarkar</em></h1>
+    <p class="hero-desc">I translate ingredient science into product decisions — from formulation bench to recommendation algorithm. 5+ years across L'Oréal, Beiersdorf, and independent beauty tech consulting.</p>
+    <a href="#work" class="hero-cta">View Projects</a>
+  </div>
+
+  <div class="hero-card">
+    <div class="formula-header">PROFESSIONAL PROFILE — INGREDIENT COMPOSITION</div>
+    <div class="formula-row">
+      <span class="inci">Formulation Science</span>
+      <span class="conc">5 yrs</span>
+      <span class="func">Active Ingredient Dev.</span>
+    </div>
+    <div class="formula-row">
+      <span class="inci">Ingredient Intelligence</span>
+      <span class="conc">5000+</span>
+      <span class="func">INCI Database Expertise</span>
+    </div>
+    <div class="formula-row">
+      <span class="inci">Product Development</span>
+      <span class="conc">25+ SKUs</span>
+      <span class="func">Concept → Launch</span>
+    </div>
+    <div class="formula-row">
+      <span class="inci">B2B Consulting</span>
+      <span class="conc">4 brands</span>
+      <span class="func">Beauty Tech Advisory</span>
+    </div>
+    <div class="formula-row">
+      <span class="inci">Dataset Expertise</span>
+      <span class="conc">300+</span>
+      <span class="func">Formulation Grading</span>
+    </div>
+    <div class="formula-row">
+      <span class="inci">Regulatory</span>
+      <span class="conc">EU · US</span>
+      <span class="func">Compliance Frameworks</span>
+    </div>
+    <div class="formula-footer">BATCH: 2019–2026 · STATUS: Available · STABILITY: Verified</div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="expertise" id="expertise">
+  <p class="section-label">What I bring</p>
+  <h2 class="section-title">Three capabilities,<br>one rare intersection</h2>
+  <div class="expertise-grid">
+    <div class="expertise-cell">
+      <h3>Ingredient Science</h3>
+      <p>Deep mechanistic knowledge of bioactives, functional actives, and their interaction with skin and hair biology. I evaluate ingredients not just by INCI name but by mechanism, concentration, skin penetration, and real-world efficacy signal.</p>
+      <div class="tags">
+        <span class="tag">Bioactives</span>
+        <span class="tag">Physicochemical</span>
+        <span class="tag">Stability</span>
+        <span class="tag">Efficacy Data</span>
+      </div>
+    </div>
+    <div class="expertise-cell">
+      <h3>Formulation Analysis</h3>
+      <p>End-to-end formulation development and critical assessment across skincare, haircare, and colour cosmetics. Trained to read a formula the way a physician reads a chart — identifying what works, what conflicts, and what's missing.</p>
+      <div class="tags">
+        <span class="tag">Emulsion Systems</span>
+        <span class="tag">Rheology</span>
+        <span class="tag">Preservative Design</span>
+        <span class="tag">Compatibility</span>
+      </div>
+    </div>
+    <div class="expertise-cell">
+      <h3>Beauty Tech & Data</h3>
+      <p>Structured product grading, ingredient taxonomy, and dataset curation at scale — built from 2+ years managing 5,000+ ingredient listings for B2B platforms used by 10,000+ monthly formulators and R&D professionals.</p>
+      <div class="tags">
+        <span class="tag">Product Grading</span>
+        <span class="tag">Taxonomy</span>
+        <span class="tag">Dataset Curation</span>
+        <span class="tag">Clean Beauty</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK / PROJECTS -->
+<section class="work" id="work">
+  <p class="section-label">Selected Projects</p>
+  <h2 class="section-title">Where science<br>meets product strategy</h2>
+
+  <div class="project-list">
+
+    <!-- ZALANDO TYPE -->
+    <div class="project-item">
+      <div>
+        <p class="project-meta">2026 · Beauty Tech Consulting · Skincare Intelligence</p>
+        <h3 class="project-title">Skincare Product Dataset — Formulation Grading Framework</h3>
+        <p class="project-desc">Developed and applied a structured multi-criteria grading methodology for evaluating skincare formulations — assessing ingredient efficacy, formula composition logic, concentration adequacy, skin concern alignment, and real-world performance signals. Framework designed for integration into recommendation engine datasets at scale.</p>
+      </div>
+      <div class="project-data">
+        <div class="data-block">
+          <p class="data-label">Scope</p>
+          <p class="data-value">300-product dataset · Multi-criteria scoring · Pilot validated</p>
+        </div>
+        <div class="data-block">
+          <p class="data-label">Criteria assessed</p>
+          <div>
+            <span class="data-pill">Ingredient efficacy</span>
+            <span class="data-pill">Concentration logic</span>
+            <span class="data-pill">Skin type fit</span>
+            <span class="data-pill">Skin concern targeting</span>
+            <span class="data-pill">Formulation quality</span>
+            <span class="data-pill">Regulatory compliance</span>
+          </div>
+        </div>
+        <div class="data-block">
+          <p class="data-label">Output</p>
+          <p class="data-value">Validated scoring rubric + annotated product database</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DERMASUTRA -->
+    <div class="project-item">
+      <div>
+        <p class="project-meta">2025–2026 · The Cosmetic Talks · Product Recommendations</p>
+        <h3 class="project-title">Dermasutra — Ingredient-Led Product Recommendation System</h3>
+        <p class="project-desc">Designed a comprehensive product recommendation framework for Dermasutra built on ingredient chemistry, mechanisms of action, and skin science. Covered product selection criteria from technical, quality, and costing perspectives — segmented by skin type, skin concern, climate, and lifestyle factors.</p>
+      </div>
+      <div class="project-data">
+        <div class="data-block">
+          <p class="data-label">Framework dimensions</p>
+          <div>
+            <span class="data-pill">Mechanism of action</span>
+            <span class="data-pill">Ingredient selection</span>
+            <span class="data-pill">Quality grading</span>
+            <span class="data-pill">Costing logic</span>
+            <span class="data-pill">Skin type matrix</span>
+            <span class="data-pill">Concern targeting</span>
+          </div>
+        </div>
+        <div class="data-block">
+          <p class="data-label">Technical depth</p>
+          <p class="data-value">INCI-level analysis · Supplier grade differentiation · Bioavailability considerations</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLIMATE ADAPTIVE -->
+    <div class="project-item">
+      <div>
+        <p class="project-meta">2025–2026 · The Cosmetic Talks · Range Development</p>
+        <h3 class="project-title">Climate-Adaptive Skincare Range</h3>
+        <p class="project-desc">Conceptualized and technically specified a skincare range designed to adapt to varying climate conditions — humidity extremes, UV load, temperature shifts, and air quality factors. Translated environmental science into formulation briefs, ingredient selection rationale, and positioning frameworks for a commercially viable product line.</p>
+      </div>
+      <div class="project-data">
+        <div class="data-block">
+          <p class="data-label">Innovation angle</p>
+          <p class="data-value">Climate-responsive actives · Environmental barrier function · Adaptive texture systems</p>
+        </div>
+        <div class="data-block">
+          <p class="data-label">Deliverables</p>
+          <div>
+            <span class="data-pill">Concept brief</span>
+            <span class="data-pill">Ingredient rationale</span>
+            <span class="data-pill">Formula direction</span>
+            <span class="data-pill">Range architecture</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEAR GREY -->
+    <div class="project-item">
+      <div>
+        <p class="project-meta">2025–2026 · The Cosmetic Talks · Hair Color Innovation</p>
+        <h3 class="project-title">Dear Grey — Shampoo for Grey Hair Color Coverage</h3>
+        <p class="project-desc">Developed technical formulation direction for a colour-depositing shampoo system targeting grey coverage — combining colour chemistry principles with hair care formulation to deliver progressive, even tonal deposit without compromising hair integrity. Addressed the unique porosity and structural profile of grey hair in the formulation approach.</p>
+      </div>
+      <div class="project-data">
+        <div class="data-block">
+          <p class="data-label">Chemistry focus</p>
+          <p class="data-value">Colour deposition mechanisms · Grey hair biology · Surfactant-colour compatibility</p>
+        </div>
+        <div class="data-block">
+          <p class="data-label">Technical specs</p>
+          <div>
+            <span class="data-pill">Pigment selection</span>
+            <span class="data-pill">Deposition system</span>
+            <span class="data-pill">Hair integrity</span>
+            <span class="data-pill">Wash durability</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEN'S CARE -->
+    <div class="project-item">
+      <div>
+        <p class="project-meta">2025–2026 · The Cosmetic Talks · Range Development</p>
+        <h3 class="project-title">Men's Care Range — Science-Led Development Brief</h3>
+        <p class="project-desc">Built a complete technical and commercial brief for a men's skincare and haircare range — grounded in the physiological differences of male skin and scalp. Addressed sebum production, skin thickness, post-shave barrier disruption, and hair density in the formulation direction and ingredient selection rationale.</p>
+      </div>
+      <div class="project-data">
+        <div class="data-block">
+          <p class="data-label">Science foundation</p>
+          <p class="data-value">Male skin physiology · Sebaceous activity · Barrier repair science</p>
+        </div>
+        <div class="data-block">
+          <p class="data-label">Range scope</p>
+          <div>
+            <span class="data-pill">Skincare</span>
+            <span class="data-pill">Haircare</span>
+            <span class="data-pill">Post-shave</span>
+            <span class="data-pill">Scalp care</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEIERSDORF -->
+    <div class="project-item">
+      <div>
+        <p class="project-meta">2025 · Beiersdorf AG · Master's Thesis</p>
+        <h3 class="project-title">Mitophagy-Boosting Bioactives — Next-Gen Anti-Aging Pipeline</h3>
+        <p class="project-desc">Evaluated 4 novel mitophagy-boosting compounds for anti-aging potential at Beiersdorf's Hamburg R&D centre. Designed and executed cell-based efficacy assays, physicochemical characterization, and stability compatibility screening. One compound advanced to pre-feasibility review for the 2027 innovation pipeline.</p>
+      </div>
+      <div class="project-data">
+        <div class="data-block">
+          <p class="data-label">Outcome</p>
+          <p class="data-value">1 of 4 compounds advanced to pre-feasibility review · 2027 pipeline</p>
+        </div>
+        <div class="data-block">
+          <p class="data-label">Methods</p>
+          <div>
+            <span class="data-pill">Cell-based assays</span>
+            <span class="data-pill">LC3-II analysis</span>
+            <span class="data-pill">Physicochemical profiling</span>
+            <span class="data-pill">Stability screening</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROBIOTIC SERUM -->
+    <div class="project-item">
+      <div>
+        <p class="project-meta">2025 · Probiotical S.p.A. · Formulation</p>
+        <h3 class="project-title">Probiotic Face Serum — Stability-Validated Prototype</h3>
+        <p class="project-desc">Formulated a probiotic face serum from brief to stability-validated prototype — solving the central challenge of designing a preservation system compatible with live probiotic viability while meeting antimicrobial safety standards. Passed 3-month accelerated stability testing across all internal benchmarks.</p>
+      </div>
+      <div class="project-data">
+        <div class="data-block">
+          <p class="data-label">Result</p>
+          <p class="data-value">Passed 3-month accelerated stability · All benchmarks met</p>
+        </div>
+        <div class="data-block">
+          <p class="data-label">Challenge solved</p>
+          <div>
+            <span class="data-pill">Probiotic viability</span>
+            <span class="data-pill">Preservation balance</span>
+            <span class="data-pill">pH optimization</span>
+            <span class="data-pill">PET compliance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <p class="section-label">Career timeline</p>
+  <h2 class="section-title">Built across labs,<br>platforms, and markets</h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <p class="timeline-period">2025 – Present</p>
+      <p class="timeline-role">Beauty Tech Consultant</p>
+      <p class="timeline-company">The Cosmetic Talks · Independent</p>
+      <ul class="timeline-bullets">
+        <li>Ingredient-led product recommendations for Dermasutra — covering chemistry, mechanisms, quality, costing, skin type, and skin concern dimensions</li>
+        <li>Developed technical brief for climate-adaptive skincare range and men's care range</li>
+        <li>Formulation direction for Dear Grey colour-depositing shampoo system for grey coverage</li>
+        <li>Formulation grading framework for 300-product skincare dataset (beauty tech client)</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <p class="timeline-period">Sep – Dec 2025</p>
+      <p class="timeline-role">Master's Thesis Researcher</p>
+      <p class="timeline-company">Beiersdorf AG · Hamburg, Germany</p>
+      <ul class="timeline-bullets">
+        <li>Evaluated 4 mitophagy-boosting bioactives for 2027 anti-aging pipeline — 1 advanced to pre-feasibility</li>
+        <li>Designed cell-based efficacy assays and physicochemical characterization protocols</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <p class="timeline-period">Jul – Aug 2025</p>
+      <p class="timeline-role">R&D Intern — Skincare Formulation</p>
+      <p class="timeline-company">Probiotical S.p.A. · Novara, Italy</p>
+      <ul class="timeline-bullets">
+        <li>Formulated probiotic face serum — passed 3-month accelerated stability testing</li>
+        <li>Solved probiotic viability vs. preservation conflict through pH and chelator strategy</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <p class="timeline-period">Jul 2021 – Sep 2023</p>
+      <p class="timeline-role">Technical Lead — Home & Personal Care</p>
+      <p class="timeline-company">Knowde · Bangalore, India</p>
+      <ul class="timeline-bullets">
+        <li>Built and curated taxonomy for 5,000+ ingredient listings — aligning to Sephora Clean + Planet Positive and Credo standards</li>
+        <li>Platform reached 10,000+ monthly active formulator users; ingredient positioning directly improved supplier discoverability</li>
+        <li>Authored 40+ technical articles read by 2,500+ R&D professionals</li>
+        <li>Trained commercial teams on ingredient chemistry — improving quality of client-facing technical conversations</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <p class="timeline-period">Sep 2020 – Jun 2021</p>
+      <p class="timeline-role">Research Associate — Product Development</p>
+      <p class="timeline-company">Bridgedots Tech Services · Delhi, India</p>
+      <ul class="timeline-bullets">
+        <li>Led end-to-end development of 12 skincare and haircare SKUs for international clients — all launched on time, zero post-launch quality returns</li>
+        <li>Negotiated with 8 international suppliers — achieved 10–12% cost savings</li>
+        <li>Reduced development timeline 15% through parallel stability planning</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <p class="timeline-period">Jun 2019 – Mar 2020</p>
+      <p class="timeline-role">R&I Intern — Hair Color & Care</p>
+      <p class="timeline-company">L'Oréal Research & Innovation · Mumbai, India</p>
+      <ul class="timeline-bullets">
+        <li>Garnier hair color project — raw material screening, batch formulation, stability, shade performance</li>
+        <li>3 novel shade formulations advanced to next development stage</li>
+        <li>Cross-functional coordination across R&D, Marketing, and Supply Chain</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <p class="section-label">Technical toolkit</p>
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h4>Formulation Science</h4>
+      <ul>
+        <li>Emulsions (O/W, W/O)</li>
+        <li>Aqueous & anhydrous systems</li>
+        <li>Surfactant chemistry</li>
+        <li>Rheology & texture design</li>
+        <li>Preservative systems</li>
+        <li>UV filter formulation</li>
+        <li>Colour cosmetics</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Ingredient Intelligence</h4>
+      <ul>
+        <li>Bioactive mechanism analysis</li>
+        <li>Physicochemical profiling</li>
+        <li>INCI taxonomy & curation</li>
+        <li>Clean beauty standards</li>
+        <li>Supplier grade assessment</li>
+        <li>Concentration adequacy</li>
+        <li>Skin penetration science</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Testing & Analysis</h4>
+      <ul>
+        <li>Accelerated stability (ICH Q1A)</li>
+        <li>Preservative Efficacy Testing</li>
+        <li>Cell-based efficacy assays</li>
+        <li>Physicochemical characterization</li>
+        <li>Compatibility screening</li>
+        <li>GLP documentation</li>
+        <li>DOE methodology</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Regulatory & Tech</h4>
+      <ul>
+        <li>EU / US cosmetic compliance</li>
+        <li>ECOCERT COSMOS awareness</li>
+        <li>Sephora Clean / Credo standards</li>
+        <li>Coptis Lab (academic)</li>
+        <li>GraphPad Prism</li>
+        <li>Dataset curation & grading</li>
+        <li>Technical content writing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <h2 class="section-title">Let's work together</h2>
+  <p class="contact-sub">Open to consulting, dataset projects, ingredient advisory, and full-time roles in beauty tech and formulation.</p>
+  <div class="contact-links">
+    <a href="mailto:nsawarkar08@gmail.com" class="contact-link">nsawarkar08@gmail.com</a>
+    <a href="https://linkedin.com/in/neha-sawarkar/" class="contact-link" target="_blank">LinkedIn</a>
+    <a href="tel:+393472938805" class="contact-link">+39 347 293 8805</a>
+  </div>
+</section>
+
+<footer>
+  <p>Neha Sawarkar · Cosmetic Scientist & Beauty Tech Consultant</p>
+  <p>Rimini, Italy · Available globally</p>
+</footer>
+
+<script>
+  // Single orchestrated hero reveal on load
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.querySelector('.hero').classList.add('visible');
+    }, 120);
+  });
+</script>
+
+</body>
+</html>
